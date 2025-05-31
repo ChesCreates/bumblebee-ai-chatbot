@@ -1,7 +1,12 @@
 # Import required libraries
+from dotenv import load_dotenv
 import groq # Used to connect to the Groq API for AI chat completions
 import os # Helps interact with the operating system
 import time # Allows us to add typing delays for a more human-like effect
+
+load_dotenv()
+
+api_key = os.getenv("GROQ_API_KEY")
 
 # Initialize chat history with a system message to set the AI's personality
 chat_history = [
@@ -16,7 +21,7 @@ def type_print(message, delay=0.05):
   print() # Move to a new line after the message
 
 # Create a Groq client using your API key
-client = groq.Groq(api_key="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")
+client = groq.Groq(api_key=api_key)
 
 # Initial greeting from the chatbot
 print("Hello hello! I'm Bumblebee 🐝, your AI assistant. What's your name?")
@@ -49,3 +54,4 @@ while True:
 
   # Add AI response to chat history so future replies have context
   chat_history.append({"role": "assistant", "content": reply})
+
